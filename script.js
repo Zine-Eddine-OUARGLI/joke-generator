@@ -1,3 +1,16 @@
+const joke = document.getElementById("joke");
+const get = document.getElementById("push");
+
+
+get.addEventListener("click", async function(){
+    joke.innerHTML = "Loading...."
+    let display = await getData();
+    joke.innerHTML = display.joke;
+});
+
+
+
+
 async function getData() {
   const url = "https://icanhazdadjoke.com/";
   try {
@@ -11,12 +24,9 @@ async function getData() {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    const json = await response.json();
+    return response.json();
+
   } catch (error) {
     console.error(error.message);
   }
-}
-
-for(let i = 0; i<10; i++){
-    
 }
